@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="datasource"></property>
+        <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"></property>
+        <property name="typeAliasesPackage" value="co.kuaima.fc.main.entity,co.kuaima.fc.search.entity,co.kuaima.fc.resource.entity"></property>
+        <property name="mapperLocations">
+            <list>
+                <value>classpath*:mybatis/SQL/**Mapper.xml</value>
+
+            </list>
+        </property>
+    </bean>
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="co.kuaima.fc.common.**.dao,co.kuaima.fc.main.dao,co.kuaima.fc.resource.dao"/>
+    </bean>
+</beans>
