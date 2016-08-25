@@ -10,42 +10,15 @@
 
 	<!-- spring mvc核心配置，spring mvc注解配置 -->
 	<mvc:annotation-driven />
-	
-
-	<!--<mvc:interceptors> -->
-	<!--<ref bean="loginIntegerceptor"/>-->
-	<!--</mvc:interceptors>-->
 
     <mvc:default-servlet-handler />
 
 	<!-- 配置静态资源访问 -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />
-	
-	<!--<mvc:interceptors>-->
-        <!--<mvc:interceptor>-->
-          	<!--<mvc:mapping path="/secondhandhouse/initPublish"/>-->
-			<!--<mvc:mapping path="/renthouse/initPublish"/>-->
-			<!--<mvc:mapping path="/member/*"/>-->
-			<!---->
-            <!--<bean class="co.kuaima.fc.web.interceptor.LoginInterceptor">-->
-             <!--<property name="excludedUrls">-->
-                <!--<list>-->
-                    <!--<value>/resources/</value>-->
-					<!--<value>/login</value>-->
-					<!--<value>/gzh</value>-->
-                <!--</list>-->
-            <!--</property>-->
-            <!--</bean>-->
-        <!--</mvc:interceptor>-->
 
-    <!--</mvc:interceptors>-->
 
-	
 	
 	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
-
-	<!--Freemarket 管道模板继承配置 -->
-<!--<bean id="fmXmlEscape" class="freemarker.template.utility.XmlEscape" />-->
 
 	<!--FreeMarker 配置 -->
 	<bean id="freemarkerConfig"
@@ -78,31 +51,15 @@
 		<property name="requestContextAttribute" value="rc"></property>
 	</bean>
 	
-	<!--
-		这个解析器为 UrlBasedViewResolver 的子类
-	-->
-	<!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/jsps/"/>
-		<property name="suffix" value=".jsp"/>
-	</bean>-->
+
 	
 	<!-- 异常视图 -->
 	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
-	<!--
-		unused
-	<property name="exceptionMappings">
-			<props>
-				<prop key="com.iflytek.lesson.exception.ReservationNotAvailableException">
-					reservationNotAvailable
-				</prop>
-			</props>
-		</property>
 
-		-->
 		<property name="defaultErrorView" value="error"/>
+
 	</bean>
 	
 	<!-- 文件上传支持 -->
-	<bean id="multipartResolver"     
-          class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />   
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
 </beans>

@@ -7,7 +7,7 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="datasource"></property>
         <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"></property>
-        <property name="typeAliasesPackage" value="co.kuaima.fc.main.entity,co.kuaima.fc.search.entity,co.kuaima.fc.resource.entity"></property>
+        <property name="typeAliasesPackage" value="cn.panda.entity"></property>
         <property name="mapperLocations">
             <list>
                 <value>classpath*:mybatis/SQL/**Mapper.xml</value>
@@ -17,6 +17,6 @@
     </bean>
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="co.kuaima.fc.common.**.dao,co.kuaima.fc.main.dao,co.kuaima.fc.resource.dao"/>
+        <property name="basePackage" value="cn.panda.dao"/>
     </bean>
 </beans>

@@ -18,10 +18,8 @@ public class Hello {
 
             String pageTitle = "Hello";
 
-            String dog = "world";
-
             model.addAttribute("pageTitle",pageTitle);
-            model.addAttribute("dog",dog);
+
             return "index";
         }
 

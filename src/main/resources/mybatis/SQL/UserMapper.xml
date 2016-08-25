@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.panda.dao.UserDao">
+
+    <!--这里写bean内属性和表列名的映射-->
+    <resultMap id="userMapper" type="cn.panda.entity.User">
+
+        <result property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="email" column="email"/>
+        <result property="age" column="age"/>
+        <result property="addDate" column="addDate"/>
+        <result property="isDelete" column="isDelete"/>
+
+    </resultMap>
+
+
+    <insert id="add">
+
+
+
+    </insert>
+
+
+
+
+</mapper>
