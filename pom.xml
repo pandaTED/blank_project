@@ -29,6 +29,7 @@
         <fastjson.version>1.1.43</fastjson.version>
         <redis.client.version>2.5.1</redis.client.version>
         <mysql.client.version>5.1.28</mysql.client.version>
+        <joda-time.version>2.9.7</joda-time.version>
     </properties>
 
     <repositories>
@@ -252,6 +253,14 @@
         <artifactId>ehcache-core</artifactId>
         <version>${ehcache.version}</version>
     </dependency>
+
+        <!--joda-time-->
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>${joda-time.version}</version>
+        </dependency>
+
 
     </dependencies>
 

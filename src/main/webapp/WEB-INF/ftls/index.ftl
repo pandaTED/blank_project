@@ -6,8 +6,39 @@
 </head>
 <body>
 
+    <div class="container">
+        <div class="text-center">
+            <input type="text" class="form-control" id="userId">
 
-    <h1>Hello World</h1>
+            <div class="text-center">
+                <button class="btn btn-danger" onclick="getUser()">提交</button>
+            </div>
+
+        </div>
+    </div>
+
+
+    <script>
+        
+        function getUser() {
+            var id = $("#userId").val();
+            $.ajax({
+                method:"POST",
+                url:"/user/"+id,
+                success:function (data) {
+
+                    if(data.code == 'success') {
+                        alert(data.user.username);
+                    }else if (data.code = 'fail'){
+                        alert(data.error.errmessage);
+                    }
+
+                }
+            })
+        }
+
+        
+    </script>
 
 
 </body>
