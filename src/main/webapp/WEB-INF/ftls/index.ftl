@@ -1,45 +1,46 @@
+<!DOCTYPE html>
+
 <html>
 <head>
-    <#include  "/common/js_css/js_css.ftl">
+    <meta charset="UTF-8">
+    <!-- 引入样式 -->
     <title>${pageTitle}</title>
+<#include "/common/js_css/js_css.ftl">
+    <style>
 
+        .container {
+            width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: #ffffff;
+        }
+
+        body{
+            min-height: 100%;
+            background-color: #EEF1F6;
+        }
+
+    </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="text-center">
-            <input type="text" class="form-control" id="userId">
+<div class="container">
+    <div class="head-div">
 
-            <div class="text-center">
-                <button class="btn btn-danger" onclick="getUser()">提交</button>
-            </div>
-
-        </div>
     </div>
+    <div class="body-div">
 
 
-    <script>
-        
-        function getUser() {
-            var id = $("#userId").val();
-            $.ajax({
-                method:"POST",
-                url:"/user/"+id,
-                success:function (data) {
 
-                    if(data.code == 'success') {
-                        alert(data.user.username);
-                    }else if (data.code = 'fail'){
-                        alert(data.error.errmessage);
-                    }
+    </div>
+    <div class="foot-div">
 
-                }
-            })
-        }
-
-        
-    </script>
-
-
+    </div>
+</div>
 </body>
+
+<script>
+
+</script>
+
 </html>

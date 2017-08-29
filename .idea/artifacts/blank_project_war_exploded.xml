@@ -37,6 +37,7 @@
           <element id="library" level="project" name="Maven: net.sf.ehcache:ehcache:2.10.4" />
           <element id="library" level="project" name="Maven: joda-time:joda-time:2.9.7" />
           <element id="library" level="project" name="Maven: commons-io:commons-io:2.4" />
+          <element id="library" level="project" name="Maven: com.alibaba:druid:1.1.2" />
         </element>
       </element>
       <element id="directory" name="META-INF">
