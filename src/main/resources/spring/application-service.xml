@@ -9,5 +9,4 @@
 	<!-- 启动Spring 注解扫描 -->
 	<context:component-scan base-package="cn.panda.*"/>
 
-
 </beans>
