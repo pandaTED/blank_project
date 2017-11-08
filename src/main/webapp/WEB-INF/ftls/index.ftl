@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <!-- 引入样式 -->
     <title>${pageTitle}</title>
-<#include "/common/js_css/js_css.ftl">
+<#include "/common/js_css/css.ftl">
     <style>
 
         .container {
@@ -39,6 +39,8 @@
 </div>
 </body>
 
+<#-- 引入js -->
+<#include "/common/js_css/js.ftl">
 <script>
 
 </script>

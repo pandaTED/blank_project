@@ -1,12 +1,34 @@
+<!DOCTYPE html>
+
 <html>
 <head>
-    <#include  "/common/js_css/js_css.ftl">
+    <meta charset="UTF-8">
+    <!-- 引入样式 -->
     <title>${pageTitle}</title>
+<#include "/common/js_css/css.ftl">
 
 </head>
 <body>
 
-        <h1>Hello World</h1>
+<div class="container">
+    <div class="head-div">
 
+    </div>
+    <div class="body-div">
+
+
+
+    </div>
+    <div class="foot-div">
+
+    </div>
+</div>
 </body>
+
+<#-- 引入js -->
+<#include "/common/js_css/js.ftl">
+<script>
+
+</script>
+
 </html>
