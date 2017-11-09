@@ -61,4 +61,13 @@
 	<!--开启aop代理来记录日志-->
 	<aop:aspectj-autoproxy proxy-target-class="true" />
 
+	<!--开启shiro注解-->
+	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor">
+		<property name="proxyTargetClass" value="true" />
+	</bean>
+
+	<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+		<property name="securityManager" ref="securityManager"/>
+	</bean>
+
 </beans>
