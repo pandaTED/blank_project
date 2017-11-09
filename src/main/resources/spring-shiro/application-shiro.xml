@@ -12,7 +12,8 @@
     <bean id="credentialsMatcher" class="cn.panda.config.RetryLimitHashedCredentialsMatcher">
         <constructor-arg ref="cacheManager"/>
         <property name="hashAlgorithmName" value="md5"/>
-        <property name="hashIterations" value="1"/>
+        <property name="hashIterations" value="2"/>
+        <property name="storedCredentialsHexEncoded" value="true"/>
     </bean>
 
     <!--自定义realm-->
