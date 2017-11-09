@@ -23,7 +23,7 @@ public class UserInfoDaoTest {
         public  void test1(){
 
             logger.info("==============================");
-            logger.info("----------->{}",userInfoDao.findByUserName("admin"));
+            logger.info("----------->{}",userInfoDao.findByUsername("admin"));
             logger.info("==============================");
 
         }

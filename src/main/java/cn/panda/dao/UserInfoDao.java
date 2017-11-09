@@ -9,9 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public interface UserInfoDao {
 
+
     @Select("select * from user_info where username = #{username}")
-    UserInfo findByUserName(String username);
-
-
-
+    UserInfo findByUsername(String username);
 }

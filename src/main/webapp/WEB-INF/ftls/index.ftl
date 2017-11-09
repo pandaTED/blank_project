@@ -24,19 +24,10 @@
 </head>
 <body>
 
-<div class="container">
-    <div class="head-div">
-
-    </div>
-    <div class="body-div">
 
 
 
-    </div>
-    <div class="foot-div">
 
-    </div>
-</div>
 </body>
 
 <#-- 引入js -->

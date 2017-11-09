@@ -13,6 +13,7 @@
 	<import resource="application-service.xml" />
 	<import resource="application-database.xml"/>
     <import resource="application-mybaits.xml"/>
+    <import resource="application-shiro.xml"/>
 
 
 </beans>

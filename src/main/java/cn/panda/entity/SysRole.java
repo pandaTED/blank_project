@@ -62,4 +62,5 @@ public class SysRole {
     public void setUserInfos(List<UserInfo> userInfos) {
         this.userInfos = userInfos;
     }
+
 }
