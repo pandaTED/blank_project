@@ -1,6 +1,7 @@
 package cn.panda.controller;
 
 
+import cn.panda.config.PasswordHelper;
 import cn.panda.dao.UserDao;
 import cn.panda.entity.User;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -72,7 +74,9 @@ public class IndexController {
 
 
     @RequestMapping("/register")
-    public String register(Model model,String username,String password,String repeatpassword){
+    public String register(Model model, String username, String password, String repeatpassword, RedirectAttributes redirectAttributes){
+
+        String errMsg = "";
 
         //字段全部做trim
         username = username.trim();
@@ -86,14 +90,29 @@ public class IndexController {
                 if(password.equals(repeatpassword)){    //两次输入的密码一致
 
 
+                    User user1 = new User();
 
+                    user1.setUsername(username);
+                    user1.setPassword(password);
 
+                    PasswordHelper passwordHelper = new PasswordHelper();
 
+                    passwordHelper.encryptPassword(user1);
+
+                    userDao.save(user1);
+
+                }else{
+                    errMsg = "两次输入的密码不一致！";
                 }
+            }else {
+                    errMsg = "用户名已注册！";
             }
+        }else{
+            errMsg = "用户名密码不能为空";
         }
 
-        return "";
+
+        return "redirect:/register.jsp";
     }
 
 

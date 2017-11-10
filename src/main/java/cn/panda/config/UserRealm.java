@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * <p>User: Zhang Kaitao
@@ -41,11 +42,18 @@ public class UserRealm extends AuthorizingRealm {
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 
-        logger.info("---------------------->{}", "doGetAuthorizationInfo principals");
 
         String username = (String) principals.getPrimaryPrincipal();
+        logger.info("需要授权的username----------------------->{}",username);
 
-        logger.info("---------------------->{}", username);
+        User user = userDao.findByUsernameIs(username);
+
+        //获取用户的所属的角色名称
+        List<String> roleNames = userDao.getAllRoleNameByUserName(username);
+
+
+        //获取用户的角色对应的所有的权限字段
+        List<String> privilegePermissions = userDao.getAllPrivilegeByUserName(username);
 
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
 

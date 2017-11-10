@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta charset="UTF-8">
-    <!-- 引入样式 -->
-    <title>${pageTitle}</title>
 <#include "/common/js_css/css.ftl">
     <style>
 

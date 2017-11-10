@@ -42,12 +42,53 @@
 
 
 
+            <#-- 以下为内容 -->
+
+            <#if userList??>
+                    <table class="am-table">
+                            <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>用户名</th>
+                                    <th>密码</th>
+                                    <th>盐</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+
+
+                            <tbody>
+                                <#list userList as user>
+                                    <tr>
+                                    <td>${user_index+1}</td>
+                                    <td>${user.username}</td>
+                                    <td>${user.password}</td>
+                                    <td>${user.salt}</td>
+                                    <td>
+                                        <#if sysRoleList??>
+                                            <select data-am-selected onchange="changerole(this.value,${user.uid})">
+                                                <option value="0">---请选择用户角色---</option>
+                                                <#list sysRoleList as role>
+                                                    <option value="${role.id}">${role.role}</option>
+                                                </#list>
+                                            </select>
+                                        </#if>
+                                    </td>
+                                    </tr>
+                                </#list>
+                            </tbody>
+                    </table>
+            </#if>
         </div>
     </div>
 
 <#-- 引入js -->
 <#include "/common/js_css/js.ftl">
+
 <script>
+
+    function changerole(roleid,userid) {
+    }
 
 </script>
 </body>

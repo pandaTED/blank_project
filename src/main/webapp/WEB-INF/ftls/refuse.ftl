@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta charset="UTF-8">
-    <!-- 引入样式 -->
-    <title>${pageTitle}</title>
 <#include "/common/js_css/css.ftl">
     <style>
 
@@ -32,16 +25,16 @@
 </div>
 <div class="am-g">
     <div class="am-u-lg-6 am-u-md-8 am-u-sm-centered">
-        <h3>${pageTitle}</h3>
+        <h1>没有权限</h1>
     </div>
 </div>
 
-</body>
+
 
 <#-- 引入js -->
 <#include "/common/js_css/js.ftl">
 <script>
 
 </script>
-
+</body>
 </html>
