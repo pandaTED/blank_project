@@ -11,13 +11,14 @@
 
 	<!-- spring mvc核心配置，spring mvc注解配置 -->
 	<mvc:annotation-driven />
-
     <mvc:default-servlet-handler />
 
 	<!-- 配置静态资源访问 -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 
-	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
+	<!--RequestMapping相关-->
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"></bean>
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"></bean>
 
 	<!--FreeMarker 配置 -->
 	<bean id="freemarkerConfig"

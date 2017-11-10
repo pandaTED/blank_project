@@ -11,9 +11,9 @@
 	</bean>
 
 	<import resource="application-service.xml" />
-	<import resource="application-database.xml"/>
-    <import resource="application-mybaits.xml"/>
+	<import resource="application-spring-data-jpa.xml"/>
     <import resource="classpath:/spring-shiro/application-shiro.xml"/>
+    <import resource="application-spring-data-jpa.xml"/>
 
 
 </beans>

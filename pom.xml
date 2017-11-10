@@ -9,9 +9,8 @@
     <url>http://maven.apache.org</url>
 
     <properties>
-        <spring.version>4.3.9.RELEASE</spring.version>
-        <mybatis.version>3.4.4</mybatis.version>
-        <mybatis-spring.version>1.3.1</mybatis-spring.version>
+
+        <spring.version>5.0.1.RELEASE</spring.version>
         <freemarker.version>2.3.26-incubating</freemarker.version>
 
         <servlet-api.version>3.1.0</servlet-api.version>
@@ -28,11 +27,12 @@
         <redis.client.version>2.5.1</redis.client.version>
         <mysql.client.version>5.1.28</mysql.client.version>
         <joda-time.version>2.9.7</joda-time.version>
-        <jackson.version>2.8.9</jackson.version>
+        <jackson.version>2.9.2</jackson.version>
         <commons-lang.version>2.4</commons-lang.version>
         <commons-fileupload.version>1.2.2</commons-fileupload.version>
         <commons-io.version>2.4</commons-io.version>
         <druid-version>1.1.2</druid-version>
+        <hibernate.version>5.2.11.Final</hibernate.version>
 
     </properties>
 
@@ -46,6 +46,16 @@
                 <enabled>false</enabled>
             </snapshots>
         </repository>
+
+        <repository>
+            <id>spring-libs-release</id>
+            <name>Spring Releases</name>
+            <url>https://repo.spring.io/libs-release</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+
     </repositories>
 
     <dependencies>
@@ -103,19 +113,6 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-context-support</artifactId>
             <version>${spring.version}</version>
-        </dependency>
-
-        <!-- mybaits -->
-        <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis</artifactId>
-            <version>${mybatis.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis-spring</artifactId>
-            <version>${mybatis-spring.version}</version>
         </dependency>
 
         <dependency>
@@ -258,6 +255,40 @@
             <groupId>commons-collections</groupId>
             <artifactId>commons-collections</artifactId>
             <version>3.2.2</version>
+        </dependency>
+
+        <!--spring-data-jpa-->
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-jpa</artifactId>
+                <version>2.0.1.RELEASE</version>
+            </dependency>
+
+        <!--Hibernat-->
+        <!-- Hibernate -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>${hibernate.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.hibernate</groupId>
+                    <artifactId>ejb3-persistence</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.hibernate</groupId>
+                    <artifactId>hibernate</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.hibernate</groupId>
+                    <artifactId>hibernate-annotations</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
     </dependencies>

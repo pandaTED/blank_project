@@ -1,7 +1,7 @@
 package cn.panda.config;
 
-import cn.panda.dao.UserInfoDao;
-import cn.panda.entity.UserInfo;
+import cn.panda.dao.UserDao;
+import cn.panda.entity.User;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
@@ -25,7 +25,7 @@ public class UserRealm extends AuthorizingRealm {
     Logger logger = LoggerFactory.getLogger(UserRealm.class);
 
     @Resource
-    UserInfoDao userInfoDao;
+    UserDao userDao;
 
     @Override
     public void setName(String name) {
@@ -63,12 +63,11 @@ public class UserRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 
         logger.info("---------------------->{}", "doGetAuthenticationInfo token");
-
-        logger.info("------------------->{}", userInfoDao);
+        logger.info("userDao--------------------->{}",userDao);
 
         String username = (String) token.getPrincipal();
 
-        UserInfo user = userInfoDao.findByUsername(username);
+        User user = userDao.findByUsernameIs(username);
 
         logger.info("user------------->{}", user);
 
@@ -80,6 +79,7 @@ public class UserRealm extends AuthorizingRealm {
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
                 user.getUsername(), //用户名
                 user.getPassword(), //密码
+                ByteSource.Util.bytes(user.getCredentialsSalt()),
                 getName()  //realm name
         );
 

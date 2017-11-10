@@ -1,25 +1,33 @@
 package cn.panda.entity;
 
+import javax.persistence.*;
 import java.util.List;
 
+
+@Entity
 public class SysRole {
 
-    private Integer id; // 编号
+    @Id
+    @GeneratedValue
+    private Long id; // 编号
     private String role; // 角色标识程序中判断使用,如"admin",这个是唯一的:
     private String description; // 角色描述,UI界面显示使用
     private Boolean available = Boolean.FALSE; // 是否可用,如果不可用将不会添加给用户
 
     //角色 -- 权限关系：多对多关系;
+    @ManyToMany(fetch= FetchType.EAGER)
+    @JoinTable(name="SysRolePermission",joinColumns={@JoinColumn(name="roleId")},inverseJoinColumns={@JoinColumn(name="permissionId")})
     private List<SysPermission> permissions;
 
-    // 用户 - 角色关系定义;
-    private List<UserInfo> userInfos;// 一个角色对应多个用户
+    @ManyToMany
+    @JoinTable(name="SysUserRole",joinColumns={@JoinColumn(name="roleId")},inverseJoinColumns={@JoinColumn(name="uid")})
+    private List<User> users;// 一个角色对应多个用户
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -55,12 +63,12 @@ public class SysRole {
         this.permissions = permissions;
     }
 
-    public List<UserInfo> getUserInfos() {
-        return userInfos;
+    public List<User> getUsers() {
+        return users;
     }
 
-    public void setUserInfos(List<UserInfo> userInfos) {
-        this.userInfos = userInfos;
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 
 }
