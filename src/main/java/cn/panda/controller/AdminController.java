@@ -80,6 +80,8 @@ public class AdminController {
      * @param model
      * @return
      */
+
+    @RequiresRoles("超级管理员")
     @RequestMapping("/user.jsp")
         public  String userjsp(Model model){
 

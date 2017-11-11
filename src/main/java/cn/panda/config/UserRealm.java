@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Set;
 
 /**
  * <p>User: Zhang Kaitao
@@ -49,13 +50,17 @@ public class UserRealm extends AuthorizingRealm {
         User user = userDao.findByUsernameIs(username);
 
         //获取用户的所属的角色名称
-        List<String> roleNames = userDao.getAllRoleNameByUserName(username);
-
-
+        Set<String> roleNames = userDao.getAllRoleNameByUserName(username);
         //获取用户的角色对应的所有的权限字段
-        List<String> privilegePermissions = userDao.getAllPrivilegeByUserName(username);
+        Set<String> privilegePermissions = userDao.getAllPrivilegeByUserName(username);
 
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
+
+        logger.info("--------------------->{}",roleNames);
+        logger.info("--------------------->{}",privilegePermissions);
+
+        authorizationInfo.setRoles(roleNames);
+        authorizationInfo.setStringPermissions(privilegePermissions);
 
         return authorizationInfo;
     }
@@ -94,6 +99,35 @@ public class UserRealm extends AuthorizingRealm {
         logger.info("authenticationInfo-------------->{}", authenticationInfo);
 
         return authenticationInfo;
+    }
+
+
+    @Override
+    public void clearCachedAuthorizationInfo(PrincipalCollection principals) {
+        super.clearCachedAuthorizationInfo(principals);
+    }
+
+    @Override
+    public void clearCachedAuthenticationInfo(PrincipalCollection principals) {
+        super.clearCachedAuthenticationInfo(principals);
+    }
+
+    @Override
+    public void clearCache(PrincipalCollection principals) {
+        super.clearCache(principals);
+    }
+
+    public void clearAllCachedAuthorizationInfo() {
+        getAuthorizationCache().clear();
+    }
+
+    public void clearAllCachedAuthenticationInfo() {
+        getAuthenticationCache().clear();
+    }
+
+    public void clearAllCache() {
+        clearAllCachedAuthenticationInfo();
+        clearAllCachedAuthorizationInfo();
     }
 
 }
