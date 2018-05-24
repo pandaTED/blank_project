@@ -1,39 +1,34 @@
 package cn.panda.config;
 
-import cn.panda.dao.UserDao;
 import cn.panda.entity.User;
+import cn.panda.mapper.UserMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.List;
 import java.util.Set;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ *
  */
 @Service
+@Slf4j
 public class UserRealm extends AuthorizingRealm {
 
-    Logger logger = LoggerFactory.getLogger(UserRealm.class);
 
     @Resource
-    UserDao userDao;
+    UserMapper userMapper;
 
     @Override
     public void setName(String name) {
         super.setName("UserRealm");
     }
-
 
     /**
      *  用于授权
@@ -45,19 +40,19 @@ public class UserRealm extends AuthorizingRealm {
 
 
         String username = (String) principals.getPrimaryPrincipal();
-        logger.info("需要授权的username----------------------->{}",username);
+        log.info("需要授权的username----------------------->{}",username);
 
-        User user = userDao.findByUsernameIs(username);
+        User user = userMapper.findByUsernameIs(username);
 
         //获取用户的所属的角色名称
-        Set<String> roleNames = userDao.getAllRoleNameByUserName(username);
+        Set<String> roleNames = userMapper.getAllRoleNameByUserName(username);
         //获取用户的角色对应的所有的权限字段
-        Set<String> privilegePermissions = userDao.getAllPrivilegeByUserName(username);
+        Set<String> privilegePermissions = userMapper.getAllPrivilegeByUserName(username);
 
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
 
-        logger.info("--------------------->{}",roleNames);
-        logger.info("--------------------->{}",privilegePermissions);
+        log.info("--------------------->{}",roleNames);
+        log.info("--------------------->{}",privilegePermissions);
 
         authorizationInfo.setRoles(roleNames);
         authorizationInfo.setStringPermissions(privilegePermissions);
@@ -75,14 +70,14 @@ public class UserRealm extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 
-        logger.info("---------------------->{}", "doGetAuthenticationInfo token");
-        logger.info("userDao--------------------->{}",userDao);
+        log.info("---------------------->{}", "doGetAuthenticationInfo token");
+        log.info("userMapper--------------------->{}",userMapper);
 
         String username = (String) token.getPrincipal();
 
-        User user = userDao.findByUsernameIs(username);
+        User user = userMapper.findByUsernameIs(username);
 
-        logger.info("user------------->{}", user);
+        log.info("user------------->{}", user);
 
         if (user == null) {
             throw new UnknownAccountException();//没找到帐号
@@ -96,7 +91,7 @@ public class UserRealm extends AuthorizingRealm {
                 getName()  //realm name
         );
 
-        logger.info("authenticationInfo-------------->{}", authenticationInfo);
+        log.info("authenticationInfo-------------->{}", authenticationInfo);
 
         return authenticationInfo;
     }
